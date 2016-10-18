@@ -1,0 +1,113 @@
+/*  CUSTOM-STYLES CSS PAGE
+    THIS IS MY CUSTOM STYLES TO OVERRIDE
+    PARTICULAR ELEMENTS IN THE MATERIALIZE
+    CSS DESIGN PHILOSOPHY. THIS IS STILL
+    DONE TO INHERIT FULL MOBILE CAPABILITY. */
+
+/* ----- Universal Elements ----- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 100;
+}
+
+.navi-element {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 100;
+  font-size: 1.2em;
+  margin-top: 20px;
+  z-index: 2 !important;
+}
+
+.full-body-background {
+  background-color: #202020 !important;
+}
+
+.tacky:hover {
+  /*color: red;*/
+  font-family: Monoton;
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+.tacky {
+  /*color: blue;*/
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px red, 0 0 70px red, 0 0 80px red, 0 0 100px red, 0 0 150px red;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px red, 0 0 35px red, 0 0 40px red, 0 0 50px red, 0 0 75px red;
+  }
+}
+
+/* ----- Homepage Elements ----- */
+
+.homepage-main {
+  background-size: cover;
+  background-image: url('../images/homepage-background-2.png');
+  z-index: 1 !important;
+}
+
+.homepage-container {
+  position: relative;
+  min-height: 775px;
+  border-bottom: 8px dashed #bf360c;
+  z-index: 0 !important;
+}
+
+.girl-homepage-bg {
+  opacity: 0.9;
+  z-index: 2 !important;
+}
+
+.notices-main-col {
+  display: flex;
+  flex-flow: row wrap;
+  height: 350px;
+}
+
+.notices-col {
+  align-self: flex-end;
+}
+
+.feature-title {
+  color: white;
+  font-size: 1em;
+  font-weight: 100;
+}
+
+.feature-image {
+  width: 100%;
+}
+
+h2.gambling-notice {
+  color: white;
+  font-size: 2em;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+h1.gambling-text {
+  margin-top: 230px;
+  color: white;
+  font-size: 6em;
+}
+
+h2.gambling-text {
+  color: white;
+  font-size: 2em;
+  width: 100%;
+  margin-top: -40px;
+  margin-left: 27px;
+}
+
+.feature-icon {
+  font-size: 3.5em;
+}
