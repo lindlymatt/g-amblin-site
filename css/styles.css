@@ -111,3 +111,26 @@ h2.gambling-text {
 .feature-icon {
   font-size: 3.5em;
 }
+
+#rules-row {
+  margin-bottom: 0 !important;
+}
+
+.jackpot-container {
+  position: relative;
+  max-height: 300 !important;
+  z-index: 1 !important;
+}
+
+.poker-girls {
+  max-height: 300px;
+  width: auto;
+}
+
+.jackpot-text {
+  border: 3px dashed red;
+  padding: 10px !important;
+  color: white;
+  font-size: 4em;
+  width: 100%;
+}
