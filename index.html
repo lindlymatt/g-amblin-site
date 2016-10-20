@@ -37,7 +37,7 @@
               <a class="center navi-element" href="sass.html"><h6 class="navi-element">CONTACT</h6></a>
             </div>
             <div class="col m4 tacky">
-              <a class="grey darken-3 waves-effect waves-light btn-large"><i class="material-icons left">grade</i>Sign In/Register</a>
+              <button data-target="modal1" class="grey darken-3 waves-effect waves-light btn-large modal-trigger"><i class="material-icons left">grade</i>Sign In/Register</button>
             </div>
           </div>
         </div>
@@ -61,6 +61,64 @@
 
       </div>
     </nav>
+
+    <!-- Begin Pop-up Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div class="col s12">
+          <div class="col s6">
+            <h5>Members, please log in: </h5>
+
+            <div class="row">
+              <form class="col s6">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="user_field" type="text" class="validate">
+                    <label for="user_field">Username</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="pass_field" type="password" class="validate">
+                    <label for="pass_field">Password</label>
+                  </div>
+                  <button data-target="modal1" class="right grey darken-4 waves-effect waves-light btn-large modal-trigger">Sign In</button>
+                </div>
+              </form>
+
+              <h5 class="red-text text-darken-4">No login? Not a member? Sign up!</h5>
+
+              <form class="col s6">
+                <div class="row">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="sign_up_user" type="text" class="validate">
+                        <label for="sign_up_user">Username</label>
+                      </div>
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="sign_up_pass" type="password" class="validate">
+                        <label for="sign_up_pass">Password</label>
+                      </div>
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">mail</i>
+                        <input id="sign_up_email" type="email" class="validate">
+                        <label for="sign_up_email">Email</label>
+                      </div>
+                        <button data-target="modal1" class="right grey darken-4 waves-effect waves-light btn-large modal-trigger">Register</button>
+                    </div>
+                  </form>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Begin Content -->
     <main class="homepage-main">
@@ -236,8 +294,8 @@
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
