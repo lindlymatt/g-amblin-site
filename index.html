@@ -25,16 +25,16 @@
         <div class="center row hide-on-med-and-down">
           <div class="col m12">
             <div class="col m2 tacky">
-              <a class="center navi-element" href="sass.html"><h6 class="navi-element">PORTAL</h6></a>
+              <a class="center navi-element" href="portal.html"><h6 class="navi-element">PORTAL</h6></a>
             </div>
             <div class="col m2 tacky">
-              <a class="center navi-element" href="sass.html"><h6 class="navi-element">ABOUT</h6></a>
+              <a class="center navi-element" href="about.html"><h6 class="navi-element">ABOUT</h6></a>
             </div>
             <div class="col m2 tacky">
-              <a class="center navi-element" href="sass.html"><h6 class="navi-element">GAMES</h6></a>
+              <a class="center navi-element" href="games/games.html"><h6 class="navi-element">GAMES</h6></a>
             </div>
             <div class="col m2 tacky">
-              <a class="center navi-element" href="sass.html"><h6 class="navi-element">CONTACT</h6></a>
+              <a class="center navi-element" href="contact.html"><h6 class="navi-element">CONTACT</h6></a>
             </div>
             <div class="col m4 tacky">
               <button data-target="modal1" class="grey darken-3 waves-effect waves-light btn-large modal-trigger">Sign-In/Register</button>
@@ -56,7 +56,7 @@
                 <li><a href="#!">First Sidebar Link</a></li>
                 <li><a href="#!">Second Sidebar Link</a></li>
             </ul>
-            <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu">cloud</i></a>
+            <a href="#" data-activates="slide-out" class="button-collapse"></a>
         </div>
 
       </div>
@@ -64,14 +64,15 @@
 
     <!-- Begin Pop-up Structure -->
     <div id="modal1" class="modal">
-      <div class="modal-content">
-        <div class="col s12">
-          <div class="col s6">
-            <h5>Members, please log in: </h5>
+        <div class="modal-content">
 
+          <div class="col s12">
             <div class="row">
-              <form class="col s6">
-                <div class="row">
+
+              <div class="col s6">
+                <h5>Members Login</h5>
+
+                <form class="col s12">
                   <div class="input-field col s12">
                     <i class="material-icons prefix">account_circle</i>
                     <input id="user_field" type="text" class="validate">
@@ -82,43 +83,40 @@
                     <input id="pass_field" type="password" class="validate">
                     <label for="pass_field">Password</label>
                   </div>
-                  <button data-target="modal1" class="right grey darken-4 waves-effect waves-light btn-large modal-trigger">Sign In</button>
-                </div>
-              </form>
+                </form>
 
-              <h5 class="red-text text-darken-4">No login? Not a member? Sign up!</h5>
+              </div>
+              <div class="col s6">
+                <h5 class="red-text text-darken-4">No login? No stress. Sign up here!</h5>
 
-              <form class="col s6">
-                <div class="row">
-                  <form class="col s12">
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="sign_up_user" type="text" class="validate">
-                        <label for="sign_up_user">Username</label>
-                      </div>
-                      <div class="input-field col s12">
-                        <i class="material-icons prefix">lock</i>
-                        <input id="sign_up_pass" type="password" class="validate">
-                        <label for="sign_up_pass">Password</label>
-                      </div>
-                      <div class="input-field col s12">
-                        <i class="material-icons prefix">mail</i>
-                        <input id="sign_up_email" type="email" class="validate">
-                        <label for="sign_up_email">Email</label>
-                      </div>
-                      <button data-target="modal1" class="right grey darken-4 waves-effect waves-light btn-large modal-trigger">Register</button>
-                    </div>
-                  </form>
-                </div>
+                <form class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="signup_user" type="text" class="validate">
+                    <label for="signup_user">Username</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="signup_pass" type="password" class="validate">
+                    <label for="signup_pass">Password</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">mail</i>
+                    <input id="signup_email" type="email" class="validate">
+                    <label for="signup_email">Email</label>
+                  </div>
+                </form>
 
-              </form>
+              </div>
 
             </div>
+            <div class="modal-footer">
+              <a class="grey darken-4 waves-effect waves-light btn">Confirm</a>
+            </div>
           </div>
+
         </div>
       </div>
-    </div>
 
     <!-- Begin Content -->
     <main class="homepage-main">
@@ -171,16 +169,16 @@
           <div class="col s12">
 
             <div class="col s6 m4 l2">
-              <div class="card deep-orange darken-4">
+              <div class="game-card card transparent">
                 <div class="card-content white-text">
-                  <span class="card-title"><h5 class="feature-title">Blackjack</h5></span>
+                  <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Blackjack</h5></span>
                   <img class="feature-image" src="images/blackjack-feature.png">
                 </div>
               </div>
             </div>
 
             <div class="col s6 m4 l2">
-              <div class="card transparent">
+              <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">War</h5></span>
                   <img class="feature-image" src="images/war-feature.png">
@@ -189,7 +187,7 @@
             </div>
 
             <div class="col s6 m4 l2">
-              <div class="card transparent">
+              <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Slots</h5></span>
                   <img class="feature-image" src="images/slots-feature.png">
@@ -198,7 +196,7 @@
             </div>
 
             <div class="col s6 m4 l2">
-              <div class="card transparent">
+              <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Dice</h5></span>
                   <img class="feature-image" src="images/dice-feature.png">
@@ -207,7 +205,7 @@
             </div>
 
             <div class="col s6 m4 l2">
-              <div class="card transparent">
+              <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Sevens</h5></span>
                   <img class="feature-image" src="images/highsevens-feature.png">
@@ -216,7 +214,7 @@
             </div>
 
             <div class="col s6 m4 l2">
-              <div class="card transparent">
+              <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Roulette</h5></span>
                   <img class="feature-image" src="images/roulette-feature.png">
@@ -231,9 +229,39 @@
         <div class="row hide-on-med-and-down" id="rules-row">
 
           <div class="col s12">
-            <div class="card deep-orange darken-4">
+            <div class="card deep-orange darken-4" id="main-card">
               <div class="card-content white-text">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>Welcome to G[AMBLIN]! We've got a large assortment of games and activities for you to enjoy here. These were all previously built API with changes and styling modifications to accomodate to G[AMBLIN]'s styling. We hope your time here with us is both enjoyable and exciting! Welcome to G[AMBLIN]! We've got a large assortment of games and activities for you to enjoy here. These were all previously built API with changes and styling modifications to accomodate to G[AMBLIN]'s styling. We hope your time here with us is both enjoyable and exciting! DAS G[AMBLING]!</p>
+              </div>
+            </div>
+            <div class="history-card card deep-orange darken-4" id="blackjack">
+              <div class="card-content white-text">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS BLACKJACK.</p>
+              </div>
+            </div>
+            <div class="history-card card deep-orange darken-4" id="war">
+              <div class="card-content white-text">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS WAR.</p>
+              </div>
+            </div>
+            <div class="history-card card deep-orange darken-4" id="slots">
+              <div class="card-content white-text">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS SLOTS.</p>
+              </div>
+            </div>
+            <div class="history-card card deep-orange darken-4" id="dice">
+              <div class="card-content white-text">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS DICE.</p>
+              </div>
+            </div>
+            <div class="history-card card deep-orange darken-4" id="sevens">
+              <div class="card-content white-text">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS SEVENS.</p>
+              </div>
+            </div>
+            <div class="history-card card deep-orange darken-4" id="roulette">
+              <div class="card-content white-text">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS ROULETTE.</p>
               </div>
             </div>
           </div>
@@ -274,10 +302,10 @@
          <div class="col l4 offset-l2 s12">
            <h5 class="white-text">G[AMBLIN] NAVIGATION</h5>
            <ul>
-             <li><a class="tacky grey-text text-lighten-3" href="#!">PORTAL</a></li>
-             <li><a class="tacky grey-text text-lighten-3" href="#!">ABOUT</a></li>
-             <li><a class="tacky grey-text text-lighten-3" href="#!">GAMES</a></li>
-             <li><a class="tacky grey-text text-lighten-3" href="#!">CONTACT</a></li>
+             <li><a class="tacky grey-text text-lighten-3" href="index.html">PORTAL</a></li>
+             <li><a class="tacky grey-text text-lighten-3" href="about.html">ABOUT</a></li>
+             <li><a class="tacky grey-text text-lighten-3" href="games/games.html">GAMES</a></li>
+             <li><a class="tacky grey-text text-lighten-3" href="contact.html">CONTACT</a></li>
            </ul>
          </div>
        </div>
