@@ -133,3 +133,28 @@ h2.gambling-text {
   font-size: 4em;
   width: 100%;
 }
+
+/*
+--> Games Page Edits
+*/
+
+.games-logo {
+  text-transform: uppercase;
+  color: white;
+  font-size: 6em;
+}
+
+.games-space {
+  width: 100%;
+  min-height: 150px;
+  border: 1px grey solid;
+  border-radius: 25px;
+  background-color: grey;
+}
+
+.games-text {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 100;
+  font-size: 4em;
+  color: white;
+}

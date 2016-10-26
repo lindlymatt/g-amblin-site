@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>G[amblin]</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet">
+    <link href="../css/styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  </head>
+
+  <body class="full-body-background">
+
+    <!-- Begin Navigation -->
+    <nav class="grey darken-4" id="nav-elements">
+      <div class="container">
+        <div class="center row hide-on-med-and-down">
+          <div class="col m12">
+            <div class="col m2 tacky">
+              <a class="center navi-element" href="portal.html"><h6 class="navi-element">PORTAL</h6></a>
+            </div>
+            <div class="col m2 tacky">
+              <a class="center navi-element" href="about.html"><h6 class="navi-element">ABOUT</h6></a>
+            </div>
+            <div class="col m2 tacky">
+              <a class="center navi-element" href="games/games.html"><h6 class="navi-element">GAMES</h6></a>
+            </div>
+            <div class="col m2 tacky">
+              <a class="center navi-element" href="contact.html"><h6 class="navi-element">CONTACT</h6></a>
+            </div>
+            <div class="col m4 tacky">
+              <button data-target="modal1" class="grey darken-3 waves-effect waves-light btn-large modal-trigger">Sign-In/Register</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Games</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        <div class="nav-wrapper">
+            <ul id="slide-out" class="side-nav">
+                <li><a href="#!">First Sidebar Link</a></li>
+                <li><a href="#!">Second Sidebar Link</a></li>
+            </ul>
+            <a href="#" data-activates="slide-out" class="button-collapse"></a>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Begin Pop-up Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+          <div class="col s12">
+            <div class="row">
+
+              <div class="col s6">
+                <h5>Members Login</h5>
+
+                <form class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="user_field" type="text" class="validate">
+                    <label for="user_field">Username</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="pass_field" type="password" class="validate">
+                    <label for="pass_field">Password</label>
+                  </div>
+                </form>
+
+              </div>
+              <div class="col s6">
+                <h5 class="red-text text-darken-4">No login? No stress. Sign up!</h5>
+
+                <form class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="signup_user" type="text" class="validate">
+                    <label for="signup_user">Username</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="signup_pass" type="password" class="validate">
+                    <label for="signup_pass">Password</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">mail</i>
+                    <input id="signup_email" type="email" class="validate">
+                    <label for="signup_email">Email</label>
+                  </div>
+                </form>
+
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <a class="grey darken-4 waves-effect waves-light btn">Confirm</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Begin Content -->
+
+    <main>
+      <div class="container">
+
+        <div class="center row">
+          <div class="col s12">
+            <h1 class="games-logo">games</h1>
+          </div>
+        </div>
+
+        <div class="row center">
+          <div class="center col s12 m6 valign-wrapper">
+            <div class="games-space valign">
+              <a href="/blackjack.html" class="games-text">Blackjack</a>
+            </div>
+          </div>
+          <div class="center col s12 m6">
+            <div class="games-space">
+              <a href="/war.html" class="games-text">War</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row center">
+          <div class="center col s12 m6 valign-wrapper">
+            <div class="center games-space">
+              <h1 class="games-text valign">Slots</h1>
+            </div>
+          </div>
+          <div class="center col s12 m6">
+            <div class="games-space">
+              <h1 class="games-text">Dice</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="row center">
+          <div class="center col s12 m6">
+            <div class="games-space">
+              <h1 class="games-text">Sevens</h1>
+            </div>
+          </div>
+          <div class="center col s12 m6">
+            <div class="games-space">
+              <h1 class="games-text">Roulette</h1>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="page-footer grey darken-3">
+
+     <div class="container">
+       <div class="row">
+         <div class="col l6 s12">
+           <h5 class="white-text">Meet the Team</h5>
+           <p class="grey-text text-lighten-4">Insert image of me here!</p>
+         </div>
+         <div class="col l4 offset-l2 s12">
+           <h5 class="white-text">G[AMBLIN] NAVIGATION</h5>
+           <ul>
+             <li><a class="tacky grey-text text-lighten-3" href="index.html">PORTAL</a></li>
+             <li><a class="tacky grey-text text-lighten-3" href="about.html">ABOUT</a></li>
+             <li><a class="tacky grey-text text-lighten-3" href="games/games.html">GAMES</a></li>
+             <li><a class="tacky grey-text text-lighten-3" href="contact.html">CONTACT</a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+
+     <div class="footer-copyright grey darken-4">
+       <div class="container">
+       © 2016, Designed and Managed by Matthew Lindly.
+       </div>
+     </div>
+
+    </footer>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../js/materialize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="../js/init.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
