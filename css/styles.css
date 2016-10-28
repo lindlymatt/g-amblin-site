@@ -158,3 +158,9 @@ h2.gambling-text {
   font-size: 4em;
   color: white;
 }
+
+.blackjack-main {
+  background-color: green !important;
+  height: 100vh;
+  width: 100vw;
+}
