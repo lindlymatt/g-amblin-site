@@ -145,15 +145,11 @@ function testAce(hand) {
           playerScore = (playerScore - 11) + 1;
           playerHand[i] = 1;
           updateValues(playerScore);
-          break;
-        }
-        else {
-          playerScoreDis.text(playerScore);
-          bustedHand(playerCards);
         }
       }
     }
-    updateValues(playerScore);
+    playerScoreDis.text(playerScore);
+    bustedHand(playerCards);
   }
   else {
     for(let i = 0; i < hand.length; i++) {
@@ -162,27 +158,15 @@ function testAce(hand) {
           dealerScore = (dealerScore - 11) + 1;
           dealerHand[i] = 1;
           updateValues(dealerScore);
-          break;
         }
-        else {
-          dealerScoreDis.text(dealerScore);
-          bustedHand(dealerCards);
-        }
-      }
-      else {
-        updateValues(dealerScore);
       }
     }
-    updateValues(dealerScore);
+    dealerScoreDis.text(dealerScore);
+    bustedHand(dealerCards);
   }
 }
 
 function updateValues(score) {
-  console.log('Dealer Score: ' + dealerScore);
-  console.log('Player Score: ' + playerScore);
-  console.log('Dealer Hand: ' + dealerHand);
-  console.log('Player Hand: ' + playerHand);
-
   if(score === playerScore) {
     if(playerScore > 21) {
       testAce(playerHand);
