@@ -14,10 +14,56 @@
     <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet">
     <link href="../../css/styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="blackjack-styles.css" type="text/css" rel="stylesheet" />
 
   </head>
   <body>
     <main class="blackjack-main center">
+      <div class="center row">
+        <div class="col s12">
+          <h1 class="blackjack-game-header">
+            Blackjack
+          </h1>
+          <h5>This is standard Blackjack, it uses 6 decks.</h5>
+        </div>
+      </div>
+      <div class="center row dealer-hand">
+        <div class="col s12">
+          <div class="dealer-cards">
+            <h2>Rules</h2>
+            <h5>Dealer will hit until 17.</h5>
+            <h5>You cannot split the hand in this Blackjack game.</h5>
+          </div>
+        </div>
+      </div>
+      <div class="center row blackjack-pot">
+        <div class="col s12">
+          <div class="pot-amount">
+            <h2>How to: Blackjack</h2>
+            <h5>Dealer will lay out two cards in front of you, and one visible and one invisible card in front of himself.</h5>
+            <h5>After laying the cards out, you will be asked to "hit" or "stay".</h5>
+            <h5>Hitting will give you another card.</h5>
+            <h5>Staying will keep your current hand, and it will be the dealer's turn.</h5>
+
+             <form class="col s12 bet-form">
+               <div class="input-field col s12">
+                 <input id="initial-bet" type="number" class="validate">
+                 <label for="initial-bet" data-error="Not a number." data-success="Let's play!">Initial Bet: </label>
+               </div>
+             </form>
+             <button class="start-play-button btn waves-effect waves-light">Submit<i class="material-icons right">star</i>
+             </button>
+
+          </div>
+        </div>
+      </div>
+      <div class="center row player-hand">
+        <div class="col s12">
+          <div class="player-cards">
+            <button class="start">Start</button>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!--  Scripts-->
@@ -26,5 +72,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="../../js/init.js"></script>
     <script src="../../js/script.js"></script>
+    <script src="blackjack.js"></script>
   </body>
 </html>
