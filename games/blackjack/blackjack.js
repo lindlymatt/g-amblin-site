@@ -89,13 +89,13 @@ function displayCard(data, side) {
       }
       hiddenCard = data.cards[0].image;
       $img.attr('src', 'images/back-of-card.jpg');
-      $img.attr('height', '175px');
+      $img.attr('height', '150px');
       side.append($img);
     }
     else {
       grabValues(data.cards[0], side);
       $img.attr('src',data.cards[0].image);
-      $img.attr('height', '175px');
+      $img.attr('height', '150px');
       side.append($img);
     }
 }
@@ -139,30 +139,40 @@ function grabValues(card, side) {
 
 function testAce(hand) {
   if(hand === playerHand) {
-    for(let i = 0; i < hand.length; i++) {
-      if(hand[i] === 'ACE') {
-        if((playerScore - 11) < 21) {
-          playerScore = (playerScore - 11) + 1;
-          playerHand[i] = 1;
-          updateValues(playerScore);
-        }
+    if(hand.includes('ACE')) {
+      var pIndexOf = hand.indexOf('ACE');
+      if((playerScore - 11) < 21) {
+        playerScore = (playerScore - 11) + 1;
+        playerHand[pIndexOf] = 1;
+        updateValues(playerScore);
+      }
+      else {
+        playerScoreDis.text(playerScore);
+        bustedHand(playerCards);
       }
     }
-    playerScoreDis.text(playerScore);
-    bustedHand(playerCards);
+    else {
+      playerScoreDis.text(playerScore);
+      bustedHand(playerCards);
+    }
   }
   else {
-    for(let i = 0; i < hand.length; i++) {
-      if(hand[i] === 'ACE') {
-        if((dealerScore - 11) < 21) {
-          dealerScore = (dealerScore - 11) + 1;
-          dealerHand[i] = 1;
-          updateValues(dealerScore);
-        }
+    if(hand.includes('ACE')) {
+      var dIndexOf = hand.indexOf('ACE');
+      if((dealerScore - 11) < 21) {
+        dealerScore = (dealerScore - 11) + 1;
+        dealerHand[dIndexOf] = 1;
+        updateValues(dealerScore);
+      }
+      else {
+        dealerScoreDis.text(dealerScore);
+        bustedHand(dealerCards);
       }
     }
-    dealerScoreDis.text(dealerScore);
-    bustedHand(dealerCards);
+    else {
+      dealerScoreDis.text(dealerScore);
+      bustedHand(dealerCards);
+    }
   }
 }
 
@@ -189,9 +199,9 @@ function updateValues(score) {
 }
 
 function bustedHand(side) {
-  console.log('sup');
+  side.append($('<h1>').text('YOU SUCK!'));
 }
 
 function pushedHands() {
-  console.log('no');
+  console.log('push!!!');
 }
