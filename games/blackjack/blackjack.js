@@ -1,187 +1,213 @@
 'use strict';
 
-var $theDeck = [];
-var $theDeckID = 0;
-var cardsUsed = 0;
-var dealerValue = 0;
-var userValue = 0;
+/* Steps:
+      1. Load Partials per Page (Rules, Bet, Game).
+      2. Display Information & Organization.
+      3. Add Game Functionality.
+        3.1. Use Promises to work w/ Card Loading.
+        3.2. Check if you win immediately (blackjack).
+        3.3. No need to check if dealer wins immediately.
+        3.4. Display winning message after "stay" pressed.
+        3.5. Compare values, if same and dealer above 17, call a "push".
+      4. Allow "Replay" through Refactored/Reusable Code.
+      5. Change localStorage bet every run-through.
+*/
+
+var theDeck = null;
+var playerScore = 0;
+var dealerScore = 0;
 var hiddenCard = '';
-var startButton = $('.start').hide();
-var playButton = $('.start-play-button').hide();
-var dealerSide = $('.dealer-cards');
-var potAmount = $('.pot-amount');
-var playerSide = $('.player-cards');
-var $initialBet = $('.bet-form').hide();
-var $hitBtn = $('<button>').text('HIT');
-var $stayBtn = $('<button>').text('STAY');
+var hiddenValue = 0;
+var playerHand = [];
+var dealerHand = [];
+var playerCards = $('.player-cards');
+var dealerCards = $('.dealer-cards');
+var playerScoreDis = $('#player-score');
+var dealerScoreDis = $('#dealer-score');
+var hitButton = $('#hit-button');
+var stayButton = $('#stay-button');
 
 $(function() {
-  // Generate a New "Deck" on Page Load
-  generateDeck();
-
-  // Starts Process of Start Button
-  startButton.on('click', function(event) {
-    event.preventDefault();
-    clearTable();
-    potAmount.append($initialBet);
-    $initialBet.show();
-    playButton.show();
+  // Generate Initial Hands
+  generateDeck().then(data => {
+    theDeck = data;
+    drawCards(theDeck, 1).then(data => displayCard(data, dealerCards));
+    drawCards(theDeck, 1).then(data => displayCard(data, playerCards));
+    drawCards(theDeck, 1).then(data => displayCard(data, dealerCards));
+    drawCards(theDeck, 1).then(data => displayCard(data, playerCards));
   });
 
-  // Starts The Game
-  playButton.on('click', function() {
-    clearTable();
-    dealerSide.children().remove();
-    playerSide.children().remove();
-    potAmount.children().remove();
-    drawHands();
-    potAmount.append($hitBtn);
-    potAmount.append($stayBtn);
-    if(userValue === 21) {
-      dealerSide.find('img').last().attr('src', hiddenCard);
-      alert('BLACKJACK! YOU WIN!');
-      resetGame();
-    }
-    console.log(dealerValue);
-  });
+  // Hit Button Functionality
+  hitButton.on('click', hitPlayerCard);
 
-  $hitBtn.on('click', function() {
-    dealCards(playerSide);
-    if(userValue > 21) {
-      console.log(userValue);
-      alert('BUST, GAME OVER!');
-      dealerSide.find('img').last().attr('src', hiddenCard);
-      resetGame();
-    }
-  });
+  // Stay Button Functionality
+  stayButton.on('click', function() {
+    dealerCards.children().last().attr('src', hiddenCard);
+    dealerScore += parseInt(hiddenValue);
+    updateValues(dealerScore);
 
-  $stayBtn.on('click', function() {
-    dealerSide.find('img').last().attr('src', hiddenCard);
-    generateDeck();
-    while (dealerValue < 17) {
-      dealCards(dealerSide);
-    }
-    if(dealerValue > 21) {
-        alert('DEALER BUST! YOU WIN!');
-        resetGame();
-    }
-    else if(dealerValue > userValue) {
-      alert('DEALER WINS!');
-      resetGame();
-    }
-    else {
-      alert('YOU BEAT THE DEALER!');
-    }
+    hitDealerCard();
   });
-
 });
 
-function resetGame() {
-  $hitBtn.hide();
-  $stayBtn.hide();
-  var $resetBtn = $('<button>').text('PLAY AGAIN?');
-  $resetBtn.show();
-  potAmount.append($resetBtn);
-
-  $resetBtn.on('click', function() {
-    $theDeck = [];
-    $theDeckID = 0;
-    cardsUsed = 0;
-    dealerValue = 0;
-    userValue = 0;
-    hiddenCard = '';
-    dealerSide.children().remove();
-    playerSide.children().remove();
-    $resetBtn.hide();
-    $hitBtn.show();
-    $stayBtn.show();
-    drawHands();
-  });
-}
-
 function generateDeck() {
-  var $newDeck = $.getJSON('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6');
-
-  $newDeck.done(function(data) {
-    if($newDeck.status === '200') {
-      return;
-    }
-    else {
-      $theDeckID = data.deck_id;
-      var $allCards = $.getJSON('https://deckofcardsapi.com/api/deck/' + data.deck_id + '/draw/?count=12');
-
-      $allCards.done(function(newData) {
-        if($allCards.status === '200') {
-          console.log('wat');
-          return;
-        }
-        else {
-          for(var i = 0; i < 12; i++) {
-            var allCardsObj = {};
-            if(newData.cards[i].value === 'KING' || newData.cards[i].value === 'QUEEN' || newData.cards[i].value === 'JACK') {
-              allCardsObj.value = 10;
-            }
-            else if(newData.cards[i].value === 'ACE') {
-              allCardsObj.value = 11;
-            }
-            else {
-              allCardsObj.value = newData.cards[i].value;
-            }
-            allCardsObj.image = newData.cards[i].image;
-            $theDeck.push(allCardsObj);
-          }
-          startButton.show();
-        }
-      });
-    }
-  });
+  return  $.getJSON('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6');
 }
 
-function drawHands() {
+function drawCards(deck, num) {
+  return $.getJSON('https://deckofcardsapi.com/api/deck/' + deck.deck_id + '/draw/?count=' + num);
+}
 
-  for(var i = 0; i < 4; i++) {
-    var cardImage = $('<img>').attr('src', $theDeck[i].image);
-    if(i % 2 !== 0) {
-      if(i === 3) {
-        cardImage.attr('src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Card_back_01.svg/208px-Card_back_01.svg.png');
-        cardImage.prop('height', '314');
-        cardImage.prop('width', '226');
-        dealerSide.append(cardImage);
-        hiddenCard = $theDeck[i].image;
-        dealerValue += parseInt($theDeck[i].value);
-        cardsUsed++;
+function hitPlayerCard() {
+  return drawCards(theDeck, 1).then(data => displayCard(data, playerCards));
+}
+
+function hitDealerCard() {
+  if (dealerScore < 17) {
+    drawCards(theDeck, 1).then(data => {
+      displayCard(data, dealerCards);
+      hitDealerCard();
+    });
+  }
+}
+
+function displayCard(data, side) {
+    var $img = $('<img>');
+    var cardVal = data.cards[0].value;
+    if(dealerCards.children().length === 1 && side === dealerCards) {
+      if(cardVal === "JACK" || cardVal === "QUEEN" || cardVal === "KING") {
+        hiddenValue = 10;
+        dealerHand.push(hiddenValue);
+      }
+      else if(cardVal === "ACE") {
+        hiddenValue = 11;
+        dealerHand.push('ACE');
       }
       else {
-        dealerSide.append(cardImage);
-        dealerValue += parseInt($theDeck[i].value);
-        cardsUsed++;
+        hiddenValue = data.cards[0].value;
+        dealerHand.push(hiddenValue);
+      }
+      hiddenCard = data.cards[0].image;
+      $img.attr('src', 'images/back-of-card.jpg');
+      $img.attr('height', '175px');
+      side.append($img);
+    }
+    else {
+      grabValues(data.cards[0], side);
+      $img.attr('src',data.cards[0].image);
+      $img.attr('height', '175px');
+      side.append($img);
+    }
+}
+
+function grabValues(card, side) {
+  if(side === playerCards) {
+    if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK") {
+      playerHand.push(10);
+      playerScore += 10;
+      updateValues(playerScore);
+    }
+    else if(card.value === "ACE") {
+      playerHand.push('ACE');
+      playerScore += 11;
+      updateValues(playerScore);
+    }
+    else {
+      playerHand.push(card.value);
+      playerScore += parseInt(card.value);
+      updateValues(playerScore);
+    }
+  }
+  else {
+    if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK") {
+      dealerHand.push(10);
+      dealerScore += 10;
+      updateValues(dealerScore);
+    }
+    else if(card.value === "ACE") {
+      dealerHand.push('ACE');
+      dealerScore += 11;
+      updateValues(dealerScore);
+    }
+    else {
+      dealerHand.push(card.value);
+      dealerScore += parseInt(card.value);
+      updateValues(dealerScore);
+    }
+  }
+}
+
+function testAce(hand) {
+  if(hand === playerHand) {
+    for(let i = 0; i < hand.length; i++) {
+      if(hand[i] === 'ACE') {
+        if((playerScore - 11) < 21) {
+          playerScore = (playerScore - 11) + 1;
+          playerHand[i] = 1;
+          updateValues(playerScore);
+          break;
+        }
+        else {
+          playerScoreDis.text(playerScore);
+          bustedHand(playerCards);
+        }
       }
     }
-    else {
-      playerSide.append(cardImage);
-      userValue += parseInt($theDeck[i].value);
-      cardsUsed++;
-    }
+    updateValues(playerScore);
   }
-  console.log(userValue);
+  else {
+    for(let i = 0; i < hand.length; i++) {
+      if(hand[i] === 'ACE') {
+        if((dealerScore - 11) < 21) {
+          dealerScore = (dealerScore - 11) + 1;
+          dealerHand[i] = 1;
+          updateValues(dealerScore);
+          break;
+        }
+        else {
+          dealerScoreDis.text(dealerScore);
+          bustedHand(dealerCards);
+        }
+      }
+      else {
+        updateValues(dealerScore);
+      }
+    }
+    updateValues(dealerScore);
+  }
 }
 
-function dealCards(side) {
-  for(var i = cardsUsed; i < (cardsUsed + 1); i++) {
-    var cardImage = $('<img>').attr('src', $theDeck[i].image);
-    side.append(cardImage);
-    if(side === playerSide) {
-      userValue += parseInt($theDeck[i].value);
+function updateValues(score) {
+  console.log('Dealer Score: ' + dealerScore);
+  console.log('Player Score: ' + playerScore);
+  console.log('Dealer Hand: ' + dealerHand);
+  console.log('Player Hand: ' + playerHand);
+
+  if(score === playerScore) {
+    if(playerScore > 21) {
+      testAce(playerHand);
     }
     else {
-      dealerValue += parseInt($theDeck[i].value);
+      playerScoreDis.text(score);
     }
   }
-  cardsUsed++;
+  else {
+    if(dealerCards.children().length === 2 && score === playerScore) {
+      dealerScoreDis.text(score);
+    }
+    if(dealerScore > 21) {
+      testAce(dealerHand);
+    }
+    else {
+      dealerScoreDis.text(score);
+    }
+  }
 }
 
-function clearTable() {
-  dealerSide.children().hide();
-  potAmount.children().hide();
-  playerSide.children().hide();
+function bustedHand(side) {
+  console.log('sup');
+}
+
+function pushedHands() {
+  console.log('no');
 }
