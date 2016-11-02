@@ -20,6 +20,7 @@ var hiddenCard = '';
 var hiddenValue = 0;
 var playerHand = [];
 var dealerHand = [];
+var clicked = false;
 var playerCards = $('.player-cards');
 var dealerCards = $('.dealer-cards');
 var playerScoreDis = $('#player-score');
@@ -42,12 +43,14 @@ $(function() {
 
   // Stay Button Functionality
   stayButton.on('click', function() {
+    clicked = true;
     hitButton.hide();
     dealerCards.children().last().attr('src', hiddenCard);
-    dealerScore += parseInt(hiddenValue);
+    // dealerScore += parseInt(hiddenValue);
     updateValues(dealerScore);
-
     hitDealerCard();
+    dealerScoreDis.text(dealerScore);
+
     if(dealerScore === playerScore) {
       pushedHands();
     }
@@ -57,6 +60,7 @@ $(function() {
     // else {
     //   alert('Dealer wins!');
     // }
+    setTimeout(testWinner, 1000);
   });
 });
 
@@ -73,6 +77,9 @@ function hitPlayerCard() {
 }
 
 function hitDealerCard() {
+  var iterator = 0;
+  iterator++;
+  console.log(iterator + ' attempt, current dealerScore: ' + dealerScore);
   if (dealerScore < 17) {
     drawCards(theDeck, 1).then(data => {
       displayCard(data, dealerCards);
@@ -87,26 +94,24 @@ function displayCard(data, side) {
     if(dealerCards.children().length === 1 && side === dealerCards) {
       if(cardVal === "JACK" || cardVal === "QUEEN" || cardVal === "KING") {
         hiddenValue = 10;
-        dealerHand.push(hiddenValue);
       }
       else if(cardVal === "ACE") {
         hiddenValue = 11;
-        dealerHand.push('ACE');
       }
       else {
-        hiddenValue = data.cards[0].value;
-        dealerHand.push(hiddenValue);
+        hiddenValue = parseInt(cardVal);
       }
       hiddenCard = data.cards[0].image;
       $img.attr('src', 'images/back-of-card.jpg');
       $img.attr('height', '150px');
       side.append($img);
+      grabValues(data.cards[0], side);
     }
     else {
-      grabValues(data.cards[0], side);
-      $img.attr('src',data.cards[0].image);
+      $img.attr('src', data.cards[0].image);
       $img.attr('height', '150px');
       side.append($img);
+      grabValues(data.cards[0], side);
     }
 }
 
@@ -169,7 +174,7 @@ function testAce(hand) {
   else {
     if(hand.includes('ACE')) {
       var dIndexOf = hand.indexOf('ACE');
-      if((dealerScore - 11) < 21) {
+      if((dealerScore - 11) < 22) {
         dealerScore = (dealerScore - 11) + 1;
         dealerHand[dIndexOf] = 1;
         updateValues(dealerScore);
@@ -188,8 +193,19 @@ function testAce(hand) {
 
 function updateValues(score) {
   if(score === playerScore) {
-    if(playerScore > 21) {
+    if(playerScore > 21 && playerCards.children().length > 1) {
       testAce(playerHand);
+    }
+    else if(playerScore === 21 && clicked === false) {
+      hitButton.hide();
+      playerScoreDis.text(playerScore);
+      dealerCards.children().last().attr('src', hiddenCard);
+      dealerScoreDis.text(dealerScore);
+      var $bustScreen = $('#expanded');
+      var $bustText = $('#expanded-text');
+      $bustScreen.fadeIn(200).delay(800).fadeOut(200);
+      $bustText.text('BLACKJACK! NICE!');
+      resetGame();
     }
     else {
       playerScoreDis.text(score);
@@ -199,6 +215,14 @@ function updateValues(score) {
     if(dealerScore > 21) {
       testAce(dealerHand);
     }
+    else if(clicked === false && dealerScore !== 22) {
+      console.log(dealerScore);
+      dealerScoreDis.text(score - hiddenValue);
+    }
+    else if(clicked === true && dealerScore === playerScore) {
+      dealerScoreDis.text(score);
+      pushedHands();
+    }
     else {
       dealerScoreDis.text(score);
     }
@@ -207,22 +231,62 @@ function updateValues(score) {
 
 // Load the "Bust" Screen
 function bustedHand(side) {
+  // dealerScore = 0;
   hitButton.hide();
+  var $bustScreen = $('#expanded');
+  var $bustText = $('#expanded-text');
+  $bustScreen.fadeIn(200).delay(800).fadeOut(200);
+
   if(side === playerCards) {
-    side.children().toggle();
-    side.append($('<h1>').text("BUST!!"));
+    $bustText.text('YOU BUSTED, YOU LOSE!');
   }
   else {
-    side.children().toggle();
-    side.append($('<h1>').text("DEALER BUST!!"));
+    $bustText.text('DEALER BUSTED, YOU WIN!');
   }
+
+  resetGame();
 }
 
 // Load the "Push" Screen
 function pushedHands() {
-  dealerScoreDis.text(dealerScore);
-  playerCards.children().remove();
-  dealerCards.children().remove();
-  dealerCards.append($('<h1>').text("IT'S"));
-  playerCards.append($('<h1>').text("A PUSH!"));
+  console.log('made it');
+  if(dealerScore > 16 && dealerScore < 22) {
+    hitButton.hide();
+    dealerScoreDis.text(dealerScore);
+    var $bustScreen = $('#expanded');
+    var $bustText = $('#expanded-text');
+    $bustScreen.fadeIn(200).delay(500).fadeOut(200);
+    $bustText.text('PUSH! YOUR CHIPS ARE SAFE!');
+    resetGame();
+  }
+}
+
+function testWinner() {
+  hitButton.hide();
+  var $bustScreen = $('#expanded');
+  var $bustText = $('#expanded-text');
+  // var $scoresText = $('<div>').append($('<h1>'));
+  // $scoresText.first().addId('expanded-text');
+
+  if(playerScore < 22 && playerScore > dealerScore) {
+    $bustScreen.fadeIn(200).delay(500).fadeOut(200);
+    $bustText.text('PLAYER WINS!');
+    // $scoresText.first().text('DEALER SCORE: ' + dealerScore + ' vs. PLAYER SCORE: ' + playerScore);
+    resetGame();
+  }
+  if(dealerScore < 22 && dealerScore > 16 && dealerScore > playerScore) {
+    $bustScreen.fadeIn(200).delay(1000).fadeOut(200);
+    $bustText.text('DEALER WINS!');
+    // $scoresText.first().text('DEALER SCORE: ' + dealerScore + ' vs. PLAYER SCORE: ' + playerScore);
+    resetGame();
+  }
+}
+
+function resetGame() {
+  var $potText = $('.pot-text');
+  var $potHeader = $('.pot-header');
+  hitButton.text('SAME BET').show();
+  stayButton.text('NEW BET');
+  $potText.text('');
+  $potHeader.text('PLAY AGAIN?');
 }
