@@ -80,11 +80,11 @@ function drawCards(deck, num) {
 }
 
 function hitPlayerCard() {
+  pClicked = true;
   return drawCards(theDeck, 1).then(data => displayCard(data, playerCards));
 }
 
 function hitDealerCard() {
-  pClicked = true;
   if (dealerScore < 17) {
     drawCards(theDeck, 1).then(data => {
       displayCard(data, dealerCards);
@@ -265,7 +265,7 @@ function pushedHands() {
     var $bustText2 = $('.second-line');
     $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
     $bustText.text('PUSH, SAME HANDS!');
-    $bustText2.text('YOU WIN ' + (parseInt(thePot) / 2) + ' TOKENS!');
+    $bustText2.text('YOU KEEP YOUR ' + (parseInt(thePot) / 2) + ' TOKENS!');
     resetGame();
   }
 }

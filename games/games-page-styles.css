@@ -2,6 +2,15 @@
   - Custom Styles for Games Page on g-Amblin.
 */
 
+.games-page-container {
+  width: 100%;
+  min-height: 760px;
+}
+
+.games-page-image {
+  opacity: 0.15;
+}
+
 .games-logo {
   text-align: center;
   font-size: 7em;
@@ -10,9 +19,22 @@
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
 }
 
-.games-text {
-  margin: 0;
-  padding: 45px;
+.games-logo:after {
+    content: '';
+
+    width: 25%;
+    position: absolute;
+    top: 19.5%;
+    left: 37.5%;
+
+    border-width: 0 0 1px;
+    border-style: solid;
+}
+
+.games-padding {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: -15px !important;
 }
 
 .games-place {
@@ -25,41 +47,47 @@
   padding-top: 20px;
 }
 
+.vegas-background {
+  width: 100%;
+  height: 100%;
+  background-image: url('vegas-background.jpg');
+}
+
 /* CUSTOM CSS STYLES */
 
 @font-face {
   font-family: 'Monoton';
   font-style: normal;
   font-weight: 400;
-  src: local('Monoton'), local('Monoton-Regular'), url(http://themes.googleusercontent.com/static/fonts/monoton/v4/AKI-lyzyNHXByGHeOcds_w.woff) format('woff');
+  src: local('Monoton'), local('Monoton-Regular'), url(https://themes.googleusercontent.com/static/fonts/monoton/v4/AKI-lyzyNHXByGHeOcds_w.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Iceland';
   font-style: normal;
   font-weight: 400;
-  src: local('Iceland'), local('Iceland-Regular'), url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff) format('woff');
+  src: local('Iceland'), local('Iceland-Regular'), url(https://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Pacifico';
   font-style: normal;
   font-weight: 400;
-  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(http://themes.googleusercontent.com/static/fonts/pacifico/v5/yunJt0R8tCvMyj_V4xSjafesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://themes.googleusercontent.com/static/fonts/pacifico/v5/yunJt0R8tCvMyj_V4xSjafesZW2xOQ-xsNqO47m55DA.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Audiowide';
   font-style: normal;
   font-weight: 400;
-  src: local('Audiowide'), local('Audiowide-Regular'), url(http://themes.googleusercontent.com/static/fonts/audiowide/v2/8XtYtNKEyyZh481XVWfVOj8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+  src: local('Audiowide'), local('Audiowide-Regular'), url(https://themes.googleusercontent.com/static/fonts/audiowide/v2/8XtYtNKEyyZh481XVWfVOj8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Vampiro One';
   font-style: normal;
   font-weight: 400;
-  src: local('Vampiro One'), local('VampiroOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/vampiroone/v3/Ho2Xld8UbQyBA8XLxF1_NYbN6UDyHWBl620a-IRfuBk.woff) format('woff');
+  src: local('Vampiro One'), local('VampiroOne-Regular'), url(https://themes.googleusercontent.com/static/fonts/vampiroone/v3/Ho2Xld8UbQyBA8XLxF1_NYbN6UDyHWBl620a-IRfuBk.woff) format('woff');
 }
 
 body {
@@ -91,9 +119,9 @@ a {
 }
 
 .blue-lagoon {
-  font-size: 4em;
+  /*font-size: 5em;*/
   color: #228DFF;
-  font-family: Iceland;
+  font-family: Pacifico;
 }
 
 .blue-lagoon:hover {
@@ -126,7 +154,11 @@ a {
 
 .violet-hill {
   color:#BA01FF;
-  font-family:Vampiro One;
+  font-family:Audiowide;
+}
+
+#violet-hill-2 {
+  font-family: Pacifico;
 }
 
 .violet-hill:hover{
