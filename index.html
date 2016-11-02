@@ -5,7 +5,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>G[amblin]</title>
+    <title>g[amblin]</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,13 +31,16 @@
               <a class="center navi-element" href="about.html"><h6 class="navi-element">ABOUT</h6></a>
             </div>
             <div class="col m2 tacky">
-              <a class="center navi-element" href="games/games.html"><h6 class="navi-element">GAMES</h6></a>
+              <a class="center navi-element" href="games/games.html"><h6 id="games-element" class="navi-element">GAMES</h6></a>
             </div>
             <div class="col m2 tacky">
               <a class="center navi-element" href="contact.html"><h6 class="navi-element">CONTACT</h6></a>
             </div>
-            <div class="col m4 tacky">
-              <button data-target="modal1" class="grey darken-3 waves-effect waves-light btn-large modal-trigger">Sign-In/Register</button>
+            <div class="final-col col m4">
+              <button id="register-button" data-target="modal1" class="grey darken-3 waves-effect waves-light btn-large modal-trigger">Sign-In/Register</button>
+              <div class="logged-in chip">
+                <img src="images/matt-img.jpg" alt="Contact Person" /><a class="logged-in-click grey-text text-darken-3" href="#/" data-activates="slides-out"></a>
+              </div>
             </div>
           </div>
         </div>
@@ -69,7 +72,7 @@
           <div class="col s12">
             <div class="row">
 
-              <div class="col s6">
+              <!-- <div class="col s6">
                 <h5>Members Login</h5>
 
                 <form class="col s12">
@@ -85,38 +88,55 @@
                   </div>
                 </form>
 
-              </div>
-              <div class="col s6">
+              </div> -->
+              <div class="col s12">
                 <h5 class="red-text text-darken-4">No login? No stress. Sign up!</h5>
 
                 <form class="col s12">
-                  <div class="input-field col s12">
+                  <div class="input-field col s6">
                     <i class="material-icons prefix">account_circle</i>
                     <input id="signup_user" type="text" class="validate">
-                    <label for="signup_user">Username</label>
+                    <label for="signup_user">New Username</label>
                   </div>
-                  <div class="input-field col s12">
+                  <div class="input-field col s6">
                     <i class="material-icons prefix">lock</i>
                     <input id="signup_pass" type="password" class="validate">
-                    <label for="signup_pass">Password</label>
+                    <label for="signup_pass">New Password</label>
                   </div>
-                  <div class="input-field col s12">
+                  <!-- <div class="input-field col s12">
                     <i class="material-icons prefix">mail</i>
                     <input id="signup_email" type="email" class="validate">
                     <label for="signup_email">Email</label>
-                  </div>
+                  </div> -->
                 </form>
 
               </div>
 
             </div>
             <div class="modal-footer">
-              <a class="grey darken-4 waves-effect waves-light btn">Confirm</a>
+              <a class="confirm-button grey darken-4 waves-effect waves-light btn">Confirm</a>
             </div>
           </div>
 
         </div>
       </div>
+
+      <!-- Begin Sidebar Nav -->
+      <ul id="slides-out" class="side-nav">
+        <li><div class="userView">
+          <div class="background">
+            <img src="images/homepage-background-2.png">
+          </div>
+          <a href="#/"><img class="circle" src="images/matt-img.jpg"></a>
+          <a href="#/"><span class="white-text user-name-nav"></span></a>
+          <a href="#/"><span class="white-text user-tokens-nav"></span></a>
+        </div></li>
+        <li><a href="#/"><i class="material-icons">home</i>Go Home</a></li>
+        <li><a href="/games/games.html"><i class="material-icons">monetization_on</i>Go to Games</a></li>
+        <!-- <li><div class="divider"></div></li> -->
+        <!-- <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> -->
+      </ul>
 
     <!-- Begin Content -->
     <main class="homepage-main">
@@ -168,7 +188,7 @@
         <div class="center row">
           <div class="col s12">
 
-            <div class="col s6 m4 l2">
+            <div class="game-col col s6 m4 l2">
               <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Blackjack</h5></span>
@@ -177,7 +197,7 @@
               </div>
             </div>
 
-            <div class="col s6 m4 l2">
+            <div class="game-col col s6 m4 l2">
               <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">War</h5></span>
@@ -186,7 +206,7 @@
               </div>
             </div>
 
-            <div class="col s6 m4 l2">
+            <div class="game-col col s6 m4 l2">
               <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Slots</h5></span>
@@ -195,7 +215,7 @@
               </div>
             </div>
 
-            <div class="col s6 m4 l2">
+            <div class="game-col col s6 m4 l2">
               <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Dice</h5></span>
@@ -204,7 +224,7 @@
               </div>
             </div>
 
-            <div class="col s6 m4 l2">
+            <div class="game-col col s6 m4 l2">
               <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Sevens</h5></span>
@@ -213,7 +233,7 @@
               </div>
             </div>
 
-            <div class="col s6 m4 l2">
+            <div class="game-col col s6 m4 l2">
               <div class="game-card card transparent">
                 <div class="card-content white-text">
                   <span class="card-title"><h5 class="feature-title grey-text text-darken-1">Roulette</h5></span>
@@ -239,7 +259,7 @@
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS BLACKJACK.</p>
               </div>
             </div>
-            <div class="history-card card deep-orange darken-4" id="war">
+            <div class="history-card card red darken-4" id="war">
               <div class="card-content white-text">
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. DAS WAR.</p>
               </div>
@@ -273,16 +293,16 @@
         <div class="center row">
           <div class="col s12">
             <div class="center col s12 m2">
-              <img class="center valign poker-girls" src="./images/poker-girls-background.png" />
+              <img class="center poker-girls" src="./images/poker-girls-background.png" />
             </div>
             <div class="col s12 m10">
               <div class="center row">
                 <div class="col s12">
-                  <h2 class="valign jackpot-text">CURRENT CASINO JACKPOT</h2>
+                  <h2 class="valign jackpot-text">THE CASINO JACKPOT</h2>
                 </div>
               </div>
               <div class="center row">
-                <h2 class="valign jackpot-text">$1,000,000!</h2>
+                <h2 class="valign jackpot-cash">$1,000,000!</h2>
               </div>
             </div>
           </div>

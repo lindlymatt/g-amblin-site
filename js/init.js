@@ -1,6 +1,7 @@
 'use strict';
 
-$(document).ready(function(){
+$(function(){
      $('.parallax').parallax();
      $('.modal-trigger').leanModal();
+     $(".logged-in-click").sideNav();
 });

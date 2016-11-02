@@ -1,8 +1,27 @@
 'use strict';
 
-$(function() {
+var registerButton = $('#register-button');
+var finalNavCol = $('.final-col');
+var loggedIn = $('.logged-in');
+var username = localStorage.getItem('username');
 
-  // HOMEPAGE //
+$(function() {
+  loggedIn.hide();
+
+  // NAVIGATION ELEMENTS //
+  findUserInStorage();
+  var signUpUser = $('#signup_user');
+  var signUpPass = $('#signup_pass');
+  var confirmButton = $('.confirm-button');
+
+  confirmButton.on('click', function() {
+    if(signUpUser.val().length > 0) {
+      registerUser(signUpUser.val(), signUpPass.val());
+    }
+    else {
+      signUpUser.addClass('invalid');
+    }
+  });
 
   // Game Notices
   var gameNotices = $('.gambling-notice');
@@ -17,7 +36,7 @@ $(function() {
   });
 
   // Games Cards
-  var gamesCards = $('.game-card');
+  var gamesCol = $('.game-col');
   var blackjackCard = $('#blackjack').hide();
   var warCard = $('#war').hide();
   var slotsCard = $('#slots').hide();
@@ -27,10 +46,10 @@ $(function() {
   var mainCard = $('#main-card');
 
 
-  gamesCards.on('mouseenter', function() {
+  gamesCol.on('mouseenter', function() {
     // Change Card Color
-    $(this).toggleClass('deep-orange');
-    $(this).toggleClass('darken-4');
+    $(this).children().toggleClass('deep-orange');
+    $(this).children().toggleClass('darken-4');
     // Change Text Color
     $(this).find('h5').toggleClass('grey-text');
     $(this).find('h5').toggleClass('text-darken-1');
@@ -50,7 +69,7 @@ $(function() {
     else if($(this).find('h5').text() === 'Dice') {
       diceCard.toggle();
       mainCard.toggle();
-      
+
     }
     else if($(this).find('h5').text() === 'Sevens') {
       sevensCard.toggle();
@@ -62,10 +81,10 @@ $(function() {
     }
   });
 
-  gamesCards.on('mouseleave', function() {
+  gamesCol.on('mouseleave', function() {
     // Change Card Color
-    $(this).toggleClass('deep-orange');
-    $(this).toggleClass('darken-4');
+    $(this).children().toggleClass('deep-orange');
+    $(this).children().toggleClass('darken-4');
     // Change Text Color
     $(this).find('h5').toggleClass('grey-text');
     $(this).find('h5').toggleClass('text-darken-1');
@@ -96,3 +115,21 @@ $(function() {
     }
   });
 });
+
+function findUserInStorage() {
+  if(username !== null) {
+    registerButton.hide();
+    loggedIn.show();
+    $('.logged-in-click').text(username);
+    $('.user-name-nav').text('Welcome, ' + username + '.');
+    $('.user-tokens-nav').text('You have: ' + localStorage.getItem('tokens') + ' tokens.');
+  }
+}
+
+function registerUser(user, pass) {
+  localStorage.clear();
+  localStorage.setItem('username', user);
+  localStorage.setItem('password', pass);
+  localStorage.setItem('tokens', 1000);
+  location.reload();
+}
