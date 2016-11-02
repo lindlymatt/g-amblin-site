@@ -4,7 +4,7 @@
 
 main {
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
   background-color: rgb(0, 100, 0) !important;
 }
 
@@ -84,6 +84,16 @@ main {
   font-size: 3em;
 }
 
+.pot-header {
+  border: 1px black solid;
+  border-radius: 15px;
+}
+
 .pot-text {
+  top: 500px;
   font-size: 2.5em;
+}
+
+.control-buttons {
+  margin-top: 50px;
 }

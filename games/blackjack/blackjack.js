@@ -42,11 +42,21 @@ $(function() {
 
   // Stay Button Functionality
   stayButton.on('click', function() {
+    hitButton.hide();
     dealerCards.children().last().attr('src', hiddenCard);
     dealerScore += parseInt(hiddenValue);
     updateValues(dealerScore);
 
     hitDealerCard();
+    if(dealerScore === playerScore) {
+      pushedHands();
+    }
+    // else if(playerScore > dealerScore) {
+    //   alert('Player wins!');
+    // }
+    // else {
+    //   alert('Dealer wins!');
+    // }
   });
 });
 
@@ -186,9 +196,6 @@ function updateValues(score) {
     }
   }
   else {
-    if(dealerCards.children().length === 2 && score === playerScore) {
-      dealerScoreDis.text(score);
-    }
     if(dealerScore > 21) {
       testAce(dealerHand);
     }
@@ -198,10 +205,24 @@ function updateValues(score) {
   }
 }
 
+// Load the "Bust" Screen
 function bustedHand(side) {
-  side.append($('<h1>').text('YOU SUCK!'));
+  hitButton.hide();
+  if(side === playerCards) {
+    side.children().toggle();
+    side.append($('<h1>').text("BUST!!"));
+  }
+  else {
+    side.children().toggle();
+    side.append($('<h1>').text("DEALER BUST!!"));
+  }
 }
 
+// Load the "Push" Screen
 function pushedHands() {
-  console.log('push!!!');
+  dealerScoreDis.text(dealerScore);
+  playerCards.children().remove();
+  dealerCards.children().remove();
+  dealerCards.append($('<h1>').text("IT'S"));
+  playerCards.append($('<h1>').text("A PUSH!"));
 }
