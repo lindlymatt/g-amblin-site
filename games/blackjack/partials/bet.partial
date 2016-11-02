@@ -17,7 +17,7 @@
             <div class="center row">
               <div class="input-field col s11">
                 <i class="material-icons prefix">monetization_on</i>
-                <input id="icon_prefix" type="number" class="validate">
+                <input id="bet_prefix" placeholder="MINIMUM BET: 100$" type="number" class="center validate">
               </div>
             </div>
           </form>

@@ -1,5 +1,6 @@
 <div id="expanded" class="valign-wrapper">
-  <h1 id="expanded-text" class="valign"></h1>
+  <h1 class="expanded-text valign first-line"></h1>
+  <h1 class="expanded-text valign second-line"></h1>
 </div>
 <div class="center row">
   <div class="col s12">

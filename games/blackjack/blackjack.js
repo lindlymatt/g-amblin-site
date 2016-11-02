@@ -13,6 +13,8 @@
       5. Change localStorage bet every run-through.
 */
 
+var thePotText = $('.pot-text');
+var thePot = parseInt(thePlayerBet) * 2;
 var theDeck = null;
 var playerScore = 0;
 var dealerScore = 0;
@@ -20,7 +22,8 @@ var hiddenCard = '';
 var hiddenValue = 0;
 var playerHand = [];
 var dealerHand = [];
-var clicked = false;
+var dClicked = false;
+var pClicked = false;
 var playerCards = $('.player-cards');
 var dealerCards = $('.dealer-cards');
 var playerScoreDis = $('#player-score');
@@ -29,6 +32,10 @@ var hitButton = $('#hit-button');
 var stayButton = $('#stay-button');
 
 $(function() {
+
+  // Shows Accurate Bet
+  thePotText.text('$' + thePot);
+
   // Generate Initial Hands
   generateDeck().then(data => {
     theDeck = data;
@@ -43,7 +50,7 @@ $(function() {
 
   // Stay Button Functionality
   stayButton.on('click', function() {
-    clicked = true;
+    dClicked = true;
     hitButton.hide();
     dealerCards.children().last().attr('src', hiddenCard);
     // dealerScore += parseInt(hiddenValue);
@@ -77,9 +84,7 @@ function hitPlayerCard() {
 }
 
 function hitDealerCard() {
-  var iterator = 0;
-  iterator++;
-  console.log(iterator + ' attempt, current dealerScore: ' + dealerScore);
+  pClicked = true;
   if (dealerScore < 17) {
     drawCards(theDeck, 1).then(data => {
       displayCard(data, dealerCards);
@@ -196,15 +201,15 @@ function updateValues(score) {
     if(playerScore > 21 && playerCards.children().length > 1) {
       testAce(playerHand);
     }
-    else if(playerScore === 21 && clicked === false) {
+    else if(playerScore === 21 && pClicked === false) {
       hitButton.hide();
       playerScoreDis.text(playerScore);
       dealerCards.children().last().attr('src', hiddenCard);
       dealerScoreDis.text(dealerScore);
       var $bustScreen = $('#expanded');
-      var $bustText = $('#expanded-text');
-      $bustScreen.fadeIn(200).delay(800).fadeOut(200);
-      $bustText.text('BLACKJACK! NICE!');
+      var $bustText = $('.first-line');
+      $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
+      $bustText.text('BLACKJACK! YOU WIN ' + (thePot / 2) + ' TOKENS!');
       resetGame();
     }
     else {
@@ -215,11 +220,11 @@ function updateValues(score) {
     if(dealerScore > 21) {
       testAce(dealerHand);
     }
-    else if(clicked === false && dealerScore !== 22) {
+    else if(dClicked === false && dealerScore !== 22) {
       console.log(dealerScore);
       dealerScoreDis.text(score - hiddenValue);
     }
-    else if(clicked === true && dealerScore === playerScore) {
+    else if(dClicked === true && dealerScore === playerScore) {
       dealerScoreDis.text(score);
       pushedHands();
     }
@@ -232,16 +237,20 @@ function updateValues(score) {
 // Load the "Bust" Screen
 function bustedHand(side) {
   // dealerScore = 0;
-  hitButton.hide();
   var $bustScreen = $('#expanded');
-  var $bustText = $('#expanded-text');
-  $bustScreen.fadeIn(200).delay(800).fadeOut(200);
+  var $bustText = $('.first-line');
+  var $bustText2 = $('.second-line');
+  $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
 
   if(side === playerCards) {
-    $bustText.text('YOU BUSTED, YOU LOSE!');
+    dealerCards.children().last().attr('src', hiddenCard);
+    dealerScoreDis.text(dealerScore);
+    $bustText.text('YOU BUSTED!');
+    $bustText2.text('YOU LOSE ' + (thePot / 2) + ' TOKENS!');
   }
   else {
-    $bustText.text('DEALER BUSTED, YOU WIN!');
+    $bustText.text('DEALER BUST!');
+    $bustText2.text('YOU WIN ' + (thePot / 2) + ' TOKENS!');
   }
 
   resetGame();
@@ -249,34 +258,36 @@ function bustedHand(side) {
 
 // Load the "Push" Screen
 function pushedHands() {
-  console.log('made it');
   if(dealerScore > 16 && dealerScore < 22) {
-    hitButton.hide();
     dealerScoreDis.text(dealerScore);
     var $bustScreen = $('#expanded');
-    var $bustText = $('#expanded-text');
-    $bustScreen.fadeIn(200).delay(500).fadeOut(200);
-    $bustText.text('PUSH! YOUR CHIPS ARE SAFE!');
+    var $bustText = $('.first-line');
+    var $bustText2 = $('.second-line');
+    $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
+    $bustText.text('PUSH, SAME HANDS!');
+    $bustText2.text('YOU WIN ' + (parseInt(thePot) / 2) + ' TOKENS!');
     resetGame();
   }
 }
 
 function testWinner() {
-  hitButton.hide();
   var $bustScreen = $('#expanded');
-  var $bustText = $('#expanded-text');
+  var $bustText = $('.first-line');
+  var $bustText2 = $('.second-line');
   // var $scoresText = $('<div>').append($('<h1>'));
   // $scoresText.first().addId('expanded-text');
 
   if(playerScore < 22 && playerScore > dealerScore) {
-    $bustScreen.fadeIn(200).delay(500).fadeOut(200);
-    $bustText.text('PLAYER WINS!');
+    $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
+    $bustText.text('YOU HAVE A HIGHER HAND!');
+    $bustText2.text('YOU WIN ' + (thePot / 2) + ' TOKENS!');
     // $scoresText.first().text('DEALER SCORE: ' + dealerScore + ' vs. PLAYER SCORE: ' + playerScore);
     resetGame();
   }
   if(dealerScore < 22 && dealerScore > 16 && dealerScore > playerScore) {
-    $bustScreen.fadeIn(200).delay(1000).fadeOut(200);
-    $bustText.text('DEALER WINS!');
+    $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
+    $bustText.text('DEALER HAS HIGHER HAND!');
+    $bustText2.text('YOU LOSE ' + (thePot / 2) + ' TOKENS!');
     // $scoresText.first().text('DEALER SCORE: ' + dealerScore + ' vs. PLAYER SCORE: ' + playerScore);
     resetGame();
   }
@@ -285,8 +296,34 @@ function testWinner() {
 function resetGame() {
   var $potText = $('.pot-text');
   var $potHeader = $('.pot-header');
+  hitButton.off('click');
+  stayButton.off('click');
   hitButton.text('SAME BET').show();
   stayButton.text('NEW BET');
   $potText.text('');
   $potHeader.text('PLAY AGAIN?');
+
+  hitButton.on('click', function() {
+    $mainContent.load('partials/game.partial', function() {
+      $.getScript('blackjack.js');
+    });
+  });
+
+  stayButton.on('click', function() {
+    $mainContent.load('partials/bet.partial', function() {
+      var $playButton = $('#play-button');
+
+      $playButton.on('click', function() {
+        thePlayerBet = $('input').val();
+        if(thePlayerBet.length < 2 || thePlayerBet === undefined) {
+          thePlayerBet.addClass('invalid');
+        }
+        else {
+          $mainContent.load("partials/game.partial", function() {
+            $.getScript('blackjack.js');
+          });
+        }
+      });
+    });
+  });
 }
