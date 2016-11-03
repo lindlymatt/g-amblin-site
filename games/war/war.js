@@ -16,8 +16,6 @@
 var thePotText = $('.pot-text');
 var thePot = parseInt(thePlayerBet) * 2;
 var theDeck = null;
-var playerScore = 0;
-var dealerScore = 0;
 var realPValue = 0;
 var realDValue = 0;
 var dHiddenCard = '';
@@ -51,13 +49,13 @@ $(function() {
   // Stay Button Functionality
   warButton.on('click', function() {
     // dClicked = true;
-    dealerCards.children().id(0).attr('src', dHiddenCard);
-    playerCards.children().id(0).attr('src', pHiddenCard);
+    dealerCards.children().last().attr('src', dHiddenCard);
+    playerCards.children().last().attr('src', pHiddenCard);
     // updateValues(dealerScore);
-    dealerScoreDis.text(dealerScore);
-    playerScoreDis.text(playerScore);
+    dealerScoreDis.text(dHiddenValue);
+    playerScoreDis.text(pHiddenValue);
 
-    setTimeout(testWinner, 1000);
+    setTimeout(testWinner, 500);
   });
 });
 
@@ -70,18 +68,23 @@ function drawCards(deck, num) {
 }
 
 function gameOfWar() {
-  var $bustScreen = $('#expanded');
-  var $bustText = $('.first-line');
-  var $bustText2 = $('.second-line');
-  var warButton = $('#war-war-button');
-  var warStayButton = $('#war-stay-button');
-
-  $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
-  $bustText.text('SAME HAND, SHALL WE GENTS?!');
-  $bustText2.text('DO NOT BE A SALLY! LET US GO TO WAR!');
+  playerCards.children().remove();
+  dealerCards.children().remove();
+  generateDeck().then(data => {
+    theDeck = data;
+    drawCards(theDeck, 1).then(data => displayCard(data, dealerCards));
+    drawCards(theDeck, 1).then(data => displayCard(data, playerCards));
+  });
 
   warButton.on('click', function() {
+    // dClicked = true;
+    dealerCards.children().last().attr('src', dHiddenCard);
+    playerCards.children().last().attr('src', pHiddenCard);
+    // updateValues(dealerScore);
+    dealerScoreDis.text(dHiddenValue);
+    playerScoreDis.text(pHiddenValue);
 
+    setTimeout(testWinner, 500);
   });
 }
 
@@ -169,6 +172,7 @@ function testWinner() {
   var $bustText2 = $('.second-line');
   var warButton = $('#war-war-button').hide();
   var warStayButton = $('#war-stay-button').hide();
+  var tankPic = $('.tank-pic').hide();
   // var $scoresText = $('<div>').append($('<h1>'));
   // $scoresText.first().addId('expanded-text');
 
@@ -188,14 +192,15 @@ function testWinner() {
       resetGame();
   }
   else {
-    $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
+    tankPic.show();
+    $bustScreen.fadeIn(200);
     warButton.show();
     warStayButton.show();
     $bustText.text('SAME HAND, SHALL WE GENTS?!');
     $bustText2.text('DO NOT BE A SALLY! LET US GO TO WAR!');
 
     warButton.on('click', function() {
-      warButton.hide();
+      $bustScreen.fadeOut(200);
       gameOfWar();
     });
 

@@ -45,7 +45,7 @@ $(function() {
           else {
             localStorage.setItem('tokens', (playerTokens - thePlayerBet));
             $mainContent.load("partials/game.partial", function() {
-              $.getScript('blackjack.js');
+              $.getScript('war.js');
             });
           }
         });
