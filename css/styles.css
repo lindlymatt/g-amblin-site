@@ -166,6 +166,9 @@ h2.gambling-text {
   margin-top: 75px;
   color:#FF1177;
   font-family:Monoton;
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
 }
 
 .jackpot-text:hover {
@@ -177,13 +180,16 @@ h2.gambling-text {
 .jackpot-cash {
   color: #228DFF;
   font-family: Monoton;
-}
-
-.jackpot-cash:hover {
   -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
   -moz-animation: neon2 1.5s ease-in-out infinite alternate;
   animation: neon2 1.5s ease-in-out infinite alternate;
 }
+
+/*.jackpot-cash:hover {
+  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 1.5s ease-in-out infinite alternate;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+}*/
 
 /*
 --> Games Page Edits
