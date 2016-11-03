@@ -58,9 +58,9 @@ $(function() {
     hitDealerCard();
     dealerScoreDis.text(dealerScore);
 
-    if(dealerScore === playerScore) {
-      pushedHands();
-    }
+    // if(dealerScore === playerScore) {
+    //   pushedHands();
+    // }
     // else if(playerScore > dealerScore) {
     //   alert('Player wins!');
     // }
@@ -211,6 +211,7 @@ function updateValues(score) {
       $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
       $bustText.text('BLACKJACK! YOU WIN ' + (thePot / 2) + ' TOKENS!');
       localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) + parseInt(thePot)));
+      resetGame();
     }
     else {
       playerScoreDis.text(score);
@@ -259,7 +260,7 @@ function bustedHand(side) {
 
 // Load the "Push" Screen
 function pushedHands() {
-  if(dealerScore > 16 && dealerScore < 22) {
+  if(dealerScore > 16) {
     dealerScoreDis.text(dealerScore);
     var $bustScreen = $('#expanded');
     var $bustText = $('.first-line');
@@ -279,6 +280,9 @@ function testWinner() {
   // var $scoresText = $('<div>').append($('<h1>'));
   // $scoresText.first().addId('expanded-text');
 
+  if(playerScore === dealerScore && dealerScore < 22 && playerScore < 22) {
+    pushedHands();
+  }
   if(playerScore < 22 && playerScore > dealerScore) {
     $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
     $bustText.text('YOU HAVE A HIGHER HAND!');
@@ -349,10 +353,12 @@ function resetGame() {
   stayButton.on('click', function() {
     $mainContent.load('partials/bet.partial', function() {
       var $playButton = $('#play-button');
+      var $inputField = $('input');
       thePlayerBet = 0;
 
       $playButton.on('click', function() {
         thePlayerBet = $('input').val();
+
         if(thePlayerBet.length < 3 || thePlayerBet === undefined) {
           $inputField.addClass('invalid');
           $inputField.prop('placeholder', 'Minimum $100 Bet');
@@ -363,7 +369,7 @@ function resetGame() {
           alert('You do not have enough tokens for that.');
         }
         else {
-          localStorage.setItem('tokens', (playerTokens - thePlayerBet));
+          localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) - parseInt(thePlayerBet)));
           $mainContent.load("partials/game.partial", function() {
             $.getScript('blackjack.js');
           });
