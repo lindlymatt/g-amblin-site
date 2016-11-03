@@ -1,0 +1,34 @@
+<div class="shadowed-background">
+  <div class="container">
+
+    <div class="center row">
+      <div class="col s12">
+        <img id="blackjack-logo" src="images/blackjack_logo.png" />
+      </div>
+    </div>
+
+    <div class="center row">
+
+      <div id="bet-container" class="col s4 offset-s4">
+        <h1 id="bet-title">Place Your Bet</h1>
+
+        <div class="center row">
+          <form class="col s12">
+            <div class="center row">
+              <div class="input-field col s11">
+                <i class="material-icons prefix">monetization_on</i>
+                <input id="bet_prefix" placeholder="MINIMUM BET: 100$" type="number" class="center validate">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="center row">
+          <a id="play-button" class="green darken-4 black-text text-darken-4 waves-effect waves-light btn">GET PLAYIN'</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
