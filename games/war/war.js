@@ -284,7 +284,7 @@ function resetGame() {
         else {
           localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) - parseInt(thePlayerBet)));
           $mainContent.load("partials/game.partial", function() {
-            $.getScript('blackjack.js');
+            $.getScript('war.js');
           });
         }
       });
