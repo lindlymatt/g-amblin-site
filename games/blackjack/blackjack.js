@@ -210,7 +210,7 @@ function updateValues(score) {
       var $bustText = $('.first-line');
       $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
       $bustText.text('BLACKJACK! YOU WIN ' + (thePot / 2) + ' TOKENS!');
-      resetGame();
+      localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) + parseInt(thePot)));
     }
     else {
       playerScoreDis.text(score);
@@ -246,11 +246,12 @@ function bustedHand(side) {
     dealerCards.children().last().attr('src', hiddenCard);
     dealerScoreDis.text(dealerScore);
     $bustText.text('YOU BUSTED!');
-    $bustText2.text('YOU LOSE ' + (thePot / 2) + ' TOKENS!');
+    $bustText2.text('YOU LOST YOUR ' + (thePot / 2) + ' TOKENS!');
   }
   else {
     $bustText.text('DEALER BUST!');
     $bustText2.text('YOU WIN ' + (thePot / 2) + ' TOKENS!');
+    localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) + parseInt(thePot)));
   }
 
   resetGame();
@@ -266,6 +267,7 @@ function pushedHands() {
     $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
     $bustText.text('PUSH, SAME HANDS!');
     $bustText2.text('YOU KEEP YOUR ' + (parseInt(thePot) / 2) + ' TOKENS!');
+    localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) + parseInt(thePot / 2)));
     resetGame();
   }
 }
@@ -281,13 +283,14 @@ function testWinner() {
     $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
     $bustText.text('YOU HAVE A HIGHER HAND!');
     $bustText2.text('YOU WIN ' + (thePot / 2) + ' TOKENS!');
+    localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) + parseInt(thePot)));
     // $scoresText.first().text('DEALER SCORE: ' + dealerScore + ' vs. PLAYER SCORE: ' + playerScore);
     resetGame();
   }
   if(dealerScore < 22 && dealerScore > 16 && dealerScore > playerScore) {
     $bustScreen.fadeIn(200).delay(3000).fadeOut(200);
     $bustText.text('DEALER HAS HIGHER HAND!');
-    $bustText2.text('YOU LOSE ' + (thePot / 2) + ' TOKENS!');
+    $bustText2.text('YOU LOST YOUR ' + (thePot / 2) + ' TOKENS!');
     // $scoresText.first().text('DEALER SCORE: ' + dealerScore + ' vs. PLAYER SCORE: ' + playerScore);
     resetGame();
   }
@@ -302,23 +305,65 @@ function resetGame() {
   stayButton.text('NEW BET');
   $potText.text('');
   $potHeader.text('PLAY AGAIN?');
+  console.log(localStorage.getItem('tokens'));
 
   hitButton.on('click', function() {
-    $mainContent.load('partials/game.partial', function() {
-      $.getScript('blackjack.js');
-    });
+    if(parseInt(thePlayerBet) <= parseInt(localStorage.getItem('tokens'))) {
+      localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) - parseInt(thePlayerBet)));
+      console.log(playerTokens);
+      $mainContent.load('partials/game.partial', function() {
+        $.getScript('blackjack.js');
+      });
+    }
+    else {
+      alert('You do not have enough tokens to do the same bet. Taking you to the bet page to continue.');
+
+      $mainContent.load('partials/bet.partial', function() {
+        var $playButton = $('#play-button');
+        var $inputField = $('input');
+        thePlayerBet = 0;
+
+        $playButton.on('click', function() {
+          thePlayerBet = $('input').val();
+          if(thePlayerBet.length < 3 || thePlayerBet === undefined) {
+            $inputField.addClass('invalid');
+            $inputField.prop('placeholder', 'Minimum $100 Bet!');
+          }
+          else if(parseInt(playerTokens) < parseInt(thePlayerBet)) {
+            $inputField.addClass('invalid');
+            $inputField.prop('placeholder', 'Not enough money!');
+            alert('You do not have enough tokens for that.');
+          }
+          else {
+            localStorage.setItem('tokens', (parseInt(playerTokens) - parseInt(thePlayerBet)));
+            $mainContent.load("partials/game.partial", function() {
+              $.getScript('blackjack.js');
+            });
+          }
+        });
+      });
+
+    }
   });
 
   stayButton.on('click', function() {
     $mainContent.load('partials/bet.partial', function() {
       var $playButton = $('#play-button');
+      thePlayerBet = 0;
 
       $playButton.on('click', function() {
         thePlayerBet = $('input').val();
-        if(thePlayerBet.length < 2 || thePlayerBet === undefined) {
-          thePlayerBet.addClass('invalid');
+        if(thePlayerBet.length < 3 || thePlayerBet === undefined) {
+          $inputField.addClass('invalid');
+          $inputField.prop('placeholder', 'Minimum $100 Bet');
+        }
+        else if(parseInt(localStorage.getItem('tokens')) < parseInt(thePlayerBet)) {
+          $inputField.addClass('invalid');
+          $inputField.prop('placeholder', 'Not enough money!');
+          alert('You do not have enough tokens for that.');
         }
         else {
+          localStorage.setItem('tokens', (playerTokens - thePlayerBet));
           $mainContent.load("partials/game.partial", function() {
             $.getScript('blackjack.js');
           });

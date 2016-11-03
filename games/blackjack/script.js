@@ -17,6 +17,12 @@ var playerTokens = localStorage.getItem('tokens');
 
 $(function() {
 
+  $('.the-click').on('click', function() {
+    $('.logged-in-click').text(username);
+    $('.user-name-nav').text('Welcome, ' + username + '.');
+    $('.user-tokens-nav').text('You have: ' + parseInt(localStorage.getItem('tokens')) + ' tokens.');
+  });
+
   $mainContent.load("partials/rules.partial", function() {
     var $betButton = $('#bet-button');
     $betButton.on('click', function() {
@@ -31,12 +37,13 @@ $(function() {
             $inputField.addClass('invalid');
             $inputField.prop('placeholder', 'Minimum $100 Bet');
           }
-          else if(playerTokens < parseInt(thePlayerBet)) {
+          else if(parseInt(playerTokens) < parseInt(thePlayerBet)) {
             $inputField.addClass('invalid');
             $inputField.prop('placeholder', 'Not enough money!');
             alert('You do not have enough tokens for that.');
           }
           else {
+            localStorage.setItem('tokens', (playerTokens - thePlayerBet));
             $mainContent.load("partials/game.partial", function() {
               $.getScript('blackjack.js');
             });
