@@ -1,6 +1,8 @@
 <div id="expanded" class="valign-wrapper">
   <h1 class="expanded-text valign first-line"></h1>
   <h1 class="expanded-text valign second-line"></h1>
+  <a id="war-stay-button" class="large grey darken-3 waves-effect waves-light btn">KEEP YOUR BET!</a>
+  <a id="war-war-button" class="large green darken-3 waves-effect waves-light btn">GO TO WAR & WIN!</a>
 </div>
 <div class="center row">
   <div class="col s12">
@@ -16,7 +18,7 @@
       <div class="dealer-cards col s12">
       </div>
       <div class="col s12">
-        <h3>Current Dealer Score:</h3>
+        <h3>Dealer Card:</h3>
         <h4 id="dealer-score"></h4>
       </div>
     </div>
@@ -27,8 +29,8 @@
     <h5 class="pot-text">$1,000</h5>
     <div class="center row">
       <div class="control-buttons col s12">
-        <a id="stay-button" class="black darken-3 waves-effect waves-light btn">STAY</a>
-        <a id="hit-button" class="green darken-3 waves-effect waves-light btn">HIT ME!</a>
+        <a id="stay-button" class="large green darken-3 waves-effect waves-light btn">GO TO WAR!</a>
+        <a id="war-button" class="large green darken-3 waves-effect waves-light btn">GO TO WAR!</a>
       </div>
     </div>
   </div>
@@ -39,7 +41,7 @@
       <div class="player-cards col s12">
       </div>
       <div class="col s12">
-        <h3>Current Player Value:</h3>
+        <h3>Player Card:</h3>
         <h4 id="player-score"></h4>
       </div>
     </div>

@@ -19,8 +19,8 @@ main {
 /* Rules Page Styles */
 
 #blackjack-logo {
-  margin-top: 20px;
-  height: 175px;
+  margin-top: 15px;
+  height: 185px;
 }
 
 #games-explain-container {
@@ -29,7 +29,7 @@ main {
   background-color: green;
   color: black;
   z-index: 0;
-  height: 375px !important;
+  height: 393px !important;
 }
 
 #games-rules-container {
@@ -38,7 +38,7 @@ main {
   background-color: green;
   color: black;
   z-index: 0;
-  height: 375px !important;
+  height: 393px !important;
 }
 
 #blackjack-title {
