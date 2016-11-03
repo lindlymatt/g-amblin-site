@@ -12,11 +12,11 @@
       </div>
       <div id="games-rules-container" class="col s12 m4">
         <h2 id="games-rules">GAME RULES</h2>
-        <h5 class="rule-page-text">Dealer will always hit until 17.</h5>
+        <h5 class="rule-page-text">War involves flipping an additional card.</h5>
         <h5 class="rule-page-text">You must place a bet before playing.</h5>
         <h5 class="rule-page-text">You must spend lots of money.</h5>
         <h5 class="rule-page-text">This game is not rigged at all.</h5>
-        <h5 class="rule-page-text">You cannot fold after betting.</h5>
+        <h5 class="rule-page-text">If you have a war happen, you must double your bet to continue.</h5>
         <h5 class="rule-page-text">If you leave the page before the hand is done, your bet will be subtracted from your current token pool.</h5>
         <h5 class="rule-page-text">Most importantly - have fun!</h5>
       </div>
@@ -24,12 +24,12 @@
       </div>
       <div id="games-explain-container" class="col s12 m4">
         <h2 id="games-explain">HOW TO PLAY</h2>
-        <h5 class="rule-page-text">Your goal is to get to as close to 21 as possible.</h5>
-        <h5 class="rule-page-text">You will be dealt a hand of two cards.</h5>
-        <h5 class="rule-page-text">The dealer will have one card face up, and one down.</h5>
-        <h5 class="rule-page-text">You will have to decide whether or not to "hit", or "stay", based on your cards.</h5>
-        <h5 class="rule-page-text">If you go over 21, you automatically lose.</h5>
-        <h5 class="rule-page-text">Don't forget the dealer must go to 17!</h5>
+        <h5 class="rule-page-text">This is the game of war. You will be given one card.</h5>
+        <h5 class="rule-page-text">Whomever has the largest card between the dealer and player wins.</h5>
+        <h5 class="rule-page-text">Both cards will be face down when you first begin the game.</h5>
+        <h5 class="rule-page-text">You will both flip your cards and decide whom wins.</h5>
+        <h5 class="rule-page-text">If you win, you win the current pot.</h5>
+        <h5 class="rule-page-text">Don't forget that to continue in war, you must double your bet!</h5>
       </div>
       <div class="col m1">
       </div>
