@@ -192,6 +192,7 @@ function testWinner() {
       resetGame();
   }
   else {
+    $bustScreen.css('padding-top', '20px');
     tankPic.show();
     $bustScreen.fadeIn(200);
     warButton.show();
@@ -200,11 +201,13 @@ function testWinner() {
     $bustText2.text('DO NOT BE A SALLY! LET US GO TO WAR!');
 
     warButton.on('click', function() {
+      $bustScreen.css('padding-top', '20%');
       $bustScreen.fadeOut(200);
       gameOfWar();
     });
 
     warStayButton.on('click', function() {
+      $bustScreen.fadeOut(200);
       localStorage.setItem('tokens', (parseInt(localStorage.getItem('tokens')) + parseInt(thePot / 2)));
       resetGame();
     });
