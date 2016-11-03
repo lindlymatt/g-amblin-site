@@ -13,6 +13,7 @@
 
 var $mainContent = $('#main-content');
 var thePlayerBet = 0;
+var playerTokens = localStorage.getItem('tokens');
 
 $(function() {
 
@@ -29,6 +30,11 @@ $(function() {
           if(thePlayerBet.length < 3 || thePlayerBet === undefined) {
             $inputField.addClass('invalid');
             $inputField.prop('placeholder', 'Minimum $100 Bet');
+          }
+          else if(playerTokens < parseInt(thePlayerBet)) {
+            $inputField.addClass('invalid');
+            $inputField.prop('placeholder', 'Not enough money!');
+            alert('You do not have enough tokens for that.');
           }
           else {
             $mainContent.load("partials/game.partial", function() {
