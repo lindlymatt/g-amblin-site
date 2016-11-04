@@ -1,7 +1,8 @@
 'use strict';
 
 var registerButton = $('#register-button');
-var finalNavCol = $('.final-col');
+// var finalNavCol = $('.final-col');
+var signOutBtn = $('.sign-out-btn')
 var loggedIn = $('.logged-in');
 var username = localStorage.getItem('username');
 
@@ -21,6 +22,11 @@ $(function() {
     else {
       signUpUser.addClass('invalid');
     }
+  });
+
+  signOutBtn.on('click', function() {
+    localStorage.clear();
+    location.reload();
   });
 
   // Game Notices
