@@ -3,11 +3,10 @@
 var registerButton = $('#register-button');
 // var finalNavCol = $('.final-col');
 var signOutBtn = $('.sign-out-btn')
-var loggedIn = $('.logged-in');
+var loggedIn = $('.logged-in').hide();
 var username = localStorage.getItem('username');
 
 $(function() {
-  loggedIn.hide();
 
   // NAVIGATION ELEMENTS //
   findUserInStorage();
