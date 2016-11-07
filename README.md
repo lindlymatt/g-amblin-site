@@ -1,5 +1,7 @@
 #G-amblin
 
+You can access my self-assessment of this site at by [clicking here (this will take you to a Google Document)](https://docs.google.com/document/d/1Vvp2nPoQsEOxBRIHg3rh_Eq-RUdcIhex7XBSEAMPqGU/edit?usp=sharing).
+
 The [G-amblin](https://g-amblin.surge.sh/) site was built to be a resource for those that don't know how to gamble. If someone was worried about going to Las Vegas (or any gambling scene/area) while not knowing the rules, g-amblin would be an online destination to learn the rules of the games.
 
 Upon entering the site, a user is interfaced with an index page. This page links to the various places on the site, including a games-index, contact and "about" page. This site utilized the [Deck of Cards API](http://deckofcardsapi.com) to create the games Blackjack and Game of War. The user is prompted to access the "games" page with a highlighted area in the navigation window.
